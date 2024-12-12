@@ -1,0 +1,75 @@
+<xmlversion="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC"-//w3c//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml 1/DTD/xhtml 1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Lab 6a Prog</title>
+<script type="text/javascript">
+function apple() {
+    var c1 = document.getElementById("c1");
+    if (c1.checked)
+        alert("Selected apple, cost is 59 Rs");
+    else
+        alert("Apple removed from the cart");
+}
+function orange() {
+    var c2 = document.getElementById("c2");
+    if (c2.checked)
+        alert("Selected orange, cost is 39 Rs");
+    else
+        alert("Orange removed from the cart");
+}
+function banana() {
+    var c3 = document.getElementById("c3");
+    if (c3.checked)
+        alert("Selected banana, cost is 49 Rs");
+    else
+        alert("Banana removed from the cart");
+}
+function calculate() {
+    var c1 = document.getElementById("c1");
+    var c2 = document.getElementById("c2");
+    var c3 = document.getElementById("c3");
+    var total = 0;
+    if (c1.checked) {
+        total += parseInt(c1.value);
+    }
+    if (c2.checked) {
+        total += parseInt(c2.value);
+    }
+    if (c3.checked) {
+        total += parseInt(c3.value);
+    }
+ 
+    var tax = total * 0.05;
+    tax = tax.toFixed(2);
+    var finalTotal = parseFloat(total) + parseFloat(tax);
+    alert('Your total cost is: ' + total + ' Rs\nSales (5%) tax: ' + tax + ' Rs\n----\nTotal cost is: ' + finalTotal + ' Rs');
+}
+</script>
+</head>
+<body>
+<form method="post">
+    <h1>Welcome</h1>
+    <table>
+        <tr>
+            <td>
+   <input type="checkbox" id="c1" value="59" onclick="apple()"/> Apple
+            </td>
+        </tr>
+        <tr>
+            <td>
+<input type="checkbox" id="c2" value="39" onclick="orange()"/> Orange
+            </td>
+        </tr>
+        <tr>
+            <td>
+          <input type="checkbox" id="c3" value="49" onclick="banana()"/> Banana
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Submit" onclick="calculate()"/>
+</form>
+</body>
+</html>
+
