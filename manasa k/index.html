@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone-Style Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f2f2f2;
+        }
+        #calculator {
+            width: 300px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        #result {
+            width: 100%;
+            height: 60px;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .button {
+            width: 22%;
+            height: 60px;
+            margin: 1%;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button.number {
+            background: #e0e0e0;
+        }
+        .button.operator {
+            background: #ff9500;
+            color: white;
+        }
+        .button.clear {
+            background: #ff3b30;
+            color: white;
+        }
+        .button.equals {
+            background: #34c759;
+            color: white;
+            width: 47%;
+        }
+        .button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="result" disabled>
+        <div>
+            <button class="button clear" onclick="clearResult()">C</button>
+            <button class="button operator" onclick="appendValue('/')">÷</button>
+            <button class="button operator" onclick="appendValue('*')">×</button>
+            <button class="button operator" onclick="backspace()">←</button>
+        </div>
+        <div>
+            <button class="button number" onclick="appendValue('7')">7</button>
+            <button class="button number" onclick="appendValue('8')">8</button>
+            <button class="button number" onclick="appendValue('9')">9</button>
+            <button class="button operator" onclick="appendValue('-')">−</button>
+        </div>
+        <div>
+            <button class="button number" onclick="appendValue('4')">4</button>
+            <button class="button number" onclick="appendValue('5')">5</button>
+            <button class="button number" onclick="appendValue('6')">6</button>
+            <button class="button operator" onclick="appendValue('+')">+</button>
+        </div>
+        <div>
+            <button class="button number" onclick="appendValue('1')">1</button>
+            <button class="button number" onclick="appendValue('2')">2</button>
+            <button class="button number" onclick="appendValue('3')">3</button>
+            <button class="button equals" onclick="calculate()">=</button>
+        </div>
+        <div>
+            <button class="button number" style="width: 47%;" onclick="appendValue('0')">0</button>
+            <button class="button number" onclick="appendValue('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        function appendValue(value) {
+            const result = document.getElementById('result');
+            result.value += value;
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function backspace() {
+            const result = document.getElementById('result');
+            result.value = result.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                const result = document.getElementById('result');
+                result.value = eval(result.value.replace('×', '*').replace('÷', '/'));
+            } catch {
+                alert('Invalid expression');
+            }
+        }
+    </script>
+</body>
+</html>
